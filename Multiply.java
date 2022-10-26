@@ -1,59 +1,72 @@
-import java.io.*;
+
 import java.util.Scanner;
-public class Multiply {
-     public static void main(String[] args) 
-    {
-        int i, j, k;
-        int r1,c1, a[][];
-        int r2,c2, b[][];
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("enter r1 and c1");
-        int r1= scanner.nextInt();
-        int c1= scanner.nextInt();
-        System.out.println("enter r1 and c1");
-        int r2= scanner.nextInt();
-        int c2= scanner.nextInt();
-        System.out.println("\nMatrix A:");
-        for(i=0;i<r1;i++){
-            for(j=0;j<c1;j++){
-                int n= scanner.nextInt();
-                a[i][j]=n;
-            }
-        }
-        System.out.println("\nMatrix B:");
-        for(i=0;i<r2;i++){
-            for(j=0;j<c2;j++){
-                int n= scanner.nextInt();
-                b[i][j]=n;
-            }
-        }
-        
-    
-
-        if (r2 != c1) {
+class matrix1
+{
+public static void main(String args[])
+{
+int r1, r2,c1,c2,i,j,k,sum;
+Scanner in = new Scanner(System.in);
  
-            System.out.println(
-                "\nMultiplication Not Possible");
-        }
-
-        int c[][] = new int[r1][c2];
+System.out.println("Enter the number of rows of matrix1");
+r1 = in.nextInt();
  
-        for (i = 0; i < r1; i++) {
-            for (j = 0; j < c2; j++) {
-                c[i][j]=0;
-            }
-        }
-        for (i = 0; i < r1; i++) {
-            for (j = 0; j < c2; j++) {
-               c[i][j] += a[i][j] * b[i][j];
-            }
-        }
+System.out.println("Enter the number columns of matrix 1");
+c1 = in.nextInt();
+System.out.println("Enter the number of rows of matrix2");
+r2 = in.nextInt();
  
-        System.out.println("\nResultant Matrix:");
-         for(i=0;i<r2;i++){
-            for(j=0;j<c2;j++){
-               System.out.println(a[i][j]);
-            }
-        }
-    }  
+System.out.println("Enter the number of columns of matrix 2");
+c2 = in.nextInt();
+ 
+if(c1==r2)
+{
+ 
+int mat1[][] = new int[r1][c1]; 
+int mat2[][] = new int[r2][c2]; 
+int res[][] = new int[r1][c2];
+ 
+System.out.println("Enter the elements of matrix1");
+ 
+for ( i= 0 ; i < r1 ; i++ )
+{ 
+ 
+for ( j= 0 ; j < c1 ;j++ )
+mat1[i][j] = in.nextInt();
+ 
+}
+System.out.println("Enter the elements of matrix2");
+ 
+for ( i= 0 ; i < r2 ; i++ )
+{ 
+ 
+for ( j= 0 ; j < c2 ;j++ )
+mat2[i][j] = in.nextInt();
+ 
+}
+ 
+System.out.println("\n\noutput matrix:-");
+for ( i= 0 ; i < r1 ; i++ )
+ 
+for ( j= 0 ; j <c2;j++)
+{
+sum=0;
+for ( k= 0 ; k <r2;k++ )
+{
+sum +=mat1[i][k]*mat2[k][j] ;
+ 
+}
+res[i][j]=sum;
+}
+for ( i= 0 ; i < r1; i++ )
+{
+for ( j=0 ; j < c2;j++ )
+System.out.print(res[i][j]+" ");
+ 
+System.out.println();
+}
+}
+else
+System.out.print("multipication does not exist ");
+}
+ 
 }
