@@ -1,5 +1,5 @@
 import java.io.FileInputStream;
-
+import java.net.SocketPermission;
 import java.io.*;
 public class Fileexception {
    public static void main(String[] args) {
