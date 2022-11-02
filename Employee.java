@@ -26,36 +26,32 @@ public class Employee {
 
 }
     class Manager extends Employee{ 
-        private String specialization;
         private String department;
-        public Manager(String name,int age,String phone,String address,double salary,String specialization,String department)
+        public Manager(String name,int age,String phone,String address,double salary,String department)
         { super(name,age,phone,address,salary);
-        this.specialization = specialization; 
         this.department = department;
         }
     public void displayManager(){ 
         displayEmployee();
-        System.out.println("Specilization ="+specialization); 
         System.out.println("Department ="+department);
     }
 }
     class Officer extends Employee{
     private String specialization;
-    private String department;
+ 
     public Officer(String name,int age,String phone,String address,double salary,
-    String specialization,String department){ 
+    String specialization){ 
         super(name,age,phone,address,salary);
         this.specialization = specialization; 
-        this.department = department;
     }
     public void displayOfficer(){
     displayEmployee(); 
     System.out.println("Specilization ="+specialization); 
-    System.out.println("Department ="+department);
+
     } 
 }
     
-    class Test{
+class Test{
     public static void main(String args[]){
     Scanner sc = new Scanner(System.in); 
     System.out.println("Enter Manager Details"); 
@@ -71,12 +67,10 @@ public class Employee {
     System.out.print("Salary:");
     double salary = sc.nextDouble();
     sc.nextLine(); 
-    System.out.print("Specialization:");
-    String spec = sc.nextLine(); 
     System.out.print("Department:");
     String dept = sc.nextLine();
 
-    Manager m = new Manager(name,age,phone,addr,salary,spec,dept);
+    Manager m = new Manager(name,age,phone,addr,salary,dept);
      m.displayManager();
     System.out.println("Enter Officer Details"); 
     System.out.print("Name:");
@@ -92,8 +86,6 @@ public class Employee {
     sc.nextLine(); 
     System.out.print("Specialization:");
     String spec1 = sc.nextLine(); 
-    System.out.print("Department:");
-    String dept1 = sc.nextLine();
-    Officer o = new Officer(name1,age1,phone1,addr1,salary1,spec1,dept1); o.displayOfficer();
+    Officer o = new Officer(name1,age1,phone1,addr1,salary1,spec1); o.displayOfficer();
     
     } }
