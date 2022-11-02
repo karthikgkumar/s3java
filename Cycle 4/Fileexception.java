@@ -4,7 +4,7 @@ import java.io.*;
 public class Fileexception {
    public static void main(String[] args) {
        try{
-           FileInputStream fin = new FileInputStream("hello.txt");
+           FileInputStream fin = new FileInputStream("hello1.txt");
            FileOutputStream fout = new FileOutputStream("copy.txt");
            int i;
            while((i=fin.read()) != -1){

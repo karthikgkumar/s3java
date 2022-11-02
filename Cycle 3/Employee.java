@@ -72,6 +72,7 @@ class Test{
 
     Manager m = new Manager(name,age,phone,addr,salary,dept);
      m.displayManager();
+    System.out.println();
     System.out.println("Enter Officer Details"); 
     System.out.print("Name:");
     String name1 = sc.nextLine(); 
