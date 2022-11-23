@@ -17,8 +17,22 @@ class LinkedList {
     }
 
     Node head, tail = null;
+    public void insertfront(int data){  
+        Node newNode = new Node(data);   
+        if(head == null) { 
+            head = tail = newNode;  
+            head.left = null;  
+            tail.right = null;
+        }
+        else {  
+            head.left= newNode;  
+            newNode.right = head;  
+            newNode.left = null;    
+            head = newNode; 
+        }  
+    }
 
-    public void insert(int data) {
+    public void insertend(int data) {
         Node temp = new Node(data);
         if (head == null) {
             head = temp;
@@ -31,28 +45,60 @@ class LinkedList {
             temp.left = ptr;
         }
     }
+// public void insertany (int data, int item)
+//   {
+//     Node ptr = head;
+//     while(ptr.data != data && ptr.right !=null){
+//         ptr=ptr.right;
+//     }
+//     if(ptr.data==data){
+//         Node node = new Node (data);
+//         node.data = item;
+//         Node ptr1 = ptr.right;
+//         node.right=ptr1;
+//         node.left=ptr;
+//         ptr.right=node;
+//         ptr1.left=node;
+//         System.out.println("Data inserted Successfully");
 
-    public void appendAtEnd(int data) {
-        // Create a new node
-        Node newNode = new Node(data);
-        // Check if the list is empty
-        if (head == null) {
-            head = tail = newNode;
-            head.left = null;
-            tail.right = null;
-        }
-        // Append newNode as new tail of the list
-        else {
-            // newNode will be added after tail such that tail's next will point to newNode
-            tail.right = newNode;
-            // newNode's previous will point to tail
-            newNode.left = tail;
-            // newNode will become new tail
-            tail = newNode;
-            // As it is last node, tail's next will point to null
-            tail.right = null;
-        }
+//     }
+//     else{
+//         System.out.println("data is not in the list");
+//     }
+
+//   }
+
+  public void insertany (int data, int item)
+  {
+      int pos=1;
+    Node ptr = head;
+    if(data==1){
+        insertfront(item);
     }
+    while(ptr.right !=null && (pos)!=data){
+        ptr=ptr.right;
+        pos++;
+    }if(pos==1){
+
+    }
+     else{
+         Node node = new Node (data);
+        node.data = item;
+        Node ptr1 = ptr.right;
+        node.right=ptr1;
+        node.left=ptr;
+        ptr.right=node;
+        ptr1.left=node;
+        System.out.println("Data inserted Successfully");
+
+     }  
+    // }
+    // else{
+    //     System.out.println("data is not in the list");
+    // }
+
+  }
+   
 
     public void delete() {
         int x = head.data;
@@ -80,29 +126,47 @@ class Test {
         LinkedList list = new LinkedList();
         Scanner sc = new Scanner(System.in);
         String choice = "";
-        while (!choice.equals("4")) {
-            System.out.print("1. Insert at End \n2. Delete From Front \n3. Display \n4.Exit\n");
+        while (!choice.equals("6")) {
+            System.out.print("1. Insert at Front \n2.Insert at end\n3.Insert at any position\n4. Delete From Front \n5. Display \n6.Exit\n");
 
             System.out.println("Enter the choice:");
             choice = sc.nextLine();
             switch (choice) {
                 case "1":
-                    System.out.print("Enter the number to insert:");
+                    System.out.print("Enter the number to insert at front:");
 
                     int data = sc.nextInt();
                     sc.nextLine();
-                    list.insert(data);
+                    list.insertfront(data);
 
                     System.out.println("Data inserted Successfully");
 
                     break;
                 case "2":
-                    list.delete();
+                    System.out.print("Enter the number to insert at end:");
+                    data = sc.nextInt();
+                    sc.nextLine();
+                    list.insertend(data);
+                    System.out.println("Data inserted Successfully");
                     break;
                 case "3":
+                    System.out.print("Enter the position:");
+                    data = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter the number to be inserted:");
+                    int item = sc.nextInt();
+                    sc.nextLine();
+                    list.insertany(data, item);
+                    
+                    break;      
+
+                case "4":
+                    list.delete();
+                    break;
+                case "5":
                     list.display();
                     break;
-                case "4":
+                case "6":
                     break;
                 default:
                     System.out.println("Invalid Choice");
