@@ -23,7 +23,6 @@ public class Binarysearch {
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < (n - i); j++) {
                 if (arr[j - 1] > arr[j]) {
-                    // swap elements
                     temp = arr[j - 1];
                     arr[j - 1] = arr[j];
                     arr[j] = temp;
@@ -42,6 +41,12 @@ public class Binarysearch {
         System.out.println("Enter array");
         for (int i = 0; i < n; i++)
             A[i] = sc.nextInt();
+        int[] B =new int[A.length];
+        for (int i = 0; i < A.length; i++)
+            B[i] = A[i];
+        for (int i = 0; i < n; i++) {
+            System.out.print(B[i] + " ");
+        }
         System.out.println("Enter key");
         int key = sc.nextInt();
         bubbleSort(A);
@@ -51,10 +56,17 @@ public class Binarysearch {
         }
         System.out.println();
         int index = binarySearch(A, 0, n - 1, key);
-        if (index == -1)
+        int pos = -1;
+        for (int i = 0; i < n; i++) {
+            if (A[index] == B[i]) {
+                pos = i;
+                break;
+            }
+        }
+        if (pos == -1)
             System.out.println("Element not found");
         else
-            System.out.println("Element found at index " + index);
+            System.out.println("Element found at index " + pos);
 
     }
 }

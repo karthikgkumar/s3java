@@ -2,7 +2,6 @@
 import java.util.Scanner;
 
 class LinkedList {
-    // private Node head;
 
     class Node {
         private int data;
@@ -23,8 +22,6 @@ class LinkedList {
         Node newNode = new Node(data);
         if (head == null) {
             head = tail = newNode;
-            // head.left = null;
-            // tail.right = null;
         } else {
             head.left = newNode;
             newNode.right = head;
@@ -44,28 +41,6 @@ class LinkedList {
         }
         count++;
     }
-    // public void insertany (int data, int item)
-    // {
-    // Node ptr = head;
-    // while(ptr.data != data && ptr.right !=null){
-    // ptr=ptr.right;
-    // }
-    // if(ptr.data==data){
-    // Node node = new Node (data);
-    // node.data = item;
-    // Node ptr1 = ptr.right;
-    // node.right=ptr1;
-    // node.left=ptr;
-    // ptr.right=node;
-    // ptr1.left=node;
-    // System.out.println("Data inserted Successfully");
-
-    // }
-    // else{
-    // System.out.println("data is not in the list");
-    // }
-
-    // }
 
     public void insertany(int pos, int item) {
         System.out.println(count);
@@ -91,12 +66,8 @@ class LinkedList {
             node.right = temp.right;
             temp.right = node;
             node.right.left = node;
-            count--;
+            count++;
         }
-        // }
-        // else{
-        // System.out.println("data is not in the list");
-        // }
 
     }
 
