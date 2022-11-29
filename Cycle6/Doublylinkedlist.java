@@ -17,94 +17,99 @@ class LinkedList {
     }
 
     Node head, tail = null;
-    public void insertfront(int data){  
-        Node newNode = new Node(data);   
-        if(head == null) { 
-            head = tail = newNode;  
-            head.left = null;  
-            tail.right = null;
+    int count = 0;
+
+    public void insertfront(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            // head.left = null;
+            // tail.right = null;
+        } else {
+            head.left = newNode;
+            newNode.right = head;
+            head = newNode;
         }
-        else {  
-            head.left= newNode;  
-            newNode.right = head;  
-            newNode.left = null;    
-            head = newNode; 
-        }  
+        count++;
     }
 
     public void insertend(int data) {
-        Node temp = new Node(data);
+        Node newnode = new Node(data);
         if (head == null) {
-            head = temp;
+            head = tail = newnode;
         } else {
-            Node ptr = head;
-            while (ptr.right != null) {
-                ptr = ptr.right;
-            }
-            ptr.right = temp;
-            temp.left = ptr;
+            tail.right = newnode;
+            newnode.left = tail;
+            tail = newnode;
         }
+        count++;
     }
-// public void insertany (int data, int item)
-//   {
-//     Node ptr = head;
-//     while(ptr.data != data && ptr.right !=null){
-//         ptr=ptr.right;
-//     }
-//     if(ptr.data==data){
-//         Node node = new Node (data);
-//         node.data = item;
-//         Node ptr1 = ptr.right;
-//         node.right=ptr1;
-//         node.left=ptr;
-//         ptr.right=node;
-//         ptr1.left=node;
-//         System.out.println("Data inserted Successfully");
+    // public void insertany (int data, int item)
+    // {
+    // Node ptr = head;
+    // while(ptr.data != data && ptr.right !=null){
+    // ptr=ptr.right;
+    // }
+    // if(ptr.data==data){
+    // Node node = new Node (data);
+    // node.data = item;
+    // Node ptr1 = ptr.right;
+    // node.right=ptr1;
+    // node.left=ptr;
+    // ptr.right=node;
+    // ptr1.left=node;
+    // System.out.println("Data inserted Successfully");
 
-//     }
-//     else{
-//         System.out.println("data is not in the list");
-//     }
-
-//   }
-
-  public void insertany (int data, int item)
-  {
-      int pos=1;
-    Node ptr = head;
-    if(data==1){
-        insertfront(item);
-    }
-    while(ptr.right !=null && (pos)!=data){
-        ptr=ptr.right;
-        pos++;
-    }if(pos==1){
-
-    }
-     else{
-         Node node = new Node (data);
-        node.data = item;
-        Node ptr1 = ptr.right;
-        node.right=ptr1;
-        node.left=ptr;
-        ptr.right=node;
-        ptr1.left=node;
-        System.out.println("Data inserted Successfully");
-
-     }  
     // }
     // else{
-    //     System.out.println("data is not in the list");
+    // System.out.println("data is not in the list");
     // }
 
-  }
-   
+    // }
+
+    public void insertany(int pos, int item) {
+        System.out.println(count);
+        int i = 1;
+        Node node = new Node(item);
+        Node temp = head;
+
+        if (pos > count + 1 && pos < 0) {
+            System.out.println("invalid position");
+        } else if (pos == 1) {
+            insertfront(item);
+        } else if (pos == count + 1) {
+            insertend(item);
+
+        }
+
+        else {
+            while (i < pos - 1) {
+                temp = temp.right;
+                i++;
+            }
+            node.left = temp;
+            node.right = temp.right;
+            temp.right = node;
+            node.right.left = node;
+            count--;
+        }
+        // }
+        // else{
+        // System.out.println("data is not in the list");
+        // }
+
+    }
 
     public void delete() {
-        int x = head.data;
-        head = head.right;
-        head.left = null;
-        System.out.println("Element " + x + " got deleted");
+        if (head == null)
+            System.out.println("List is Empty");
+        else {
+            int x = head.data;
+            head = head.right;
+            head.left = null;
+            System.out.println("Element " + x + " got deleted");
+            count--;
+        }
     }
 
     public void display() {
@@ -127,14 +132,14 @@ class Test {
         Scanner sc = new Scanner(System.in);
         String choice = "";
         while (!choice.equals("6")) {
-            System.out.print("1. Insert at Front \n2.Insert at end\n3.Insert at any position\n4. Delete From Front \n5. Display \n6.Exit\n");
+            System.out.print(
+                    "1. Insert at Front \n2.Insert at end\n3.Insert at any position\n4. Delete From Front \n5. Display \n6.Exit\n");
 
             System.out.println("Enter the choice:");
             choice = sc.nextLine();
             switch (choice) {
                 case "1":
                     System.out.print("Enter the number to insert at front:");
-
                     int data = sc.nextInt();
                     sc.nextLine();
                     list.insertfront(data);
@@ -157,8 +162,9 @@ class Test {
                     int item = sc.nextInt();
                     sc.nextLine();
                     list.insertany(data, item);
-                    
-                    break;      
+                    System.out.println("Data inserted Successfully");
+
+                    break;
 
                 case "4":
                     list.delete();
