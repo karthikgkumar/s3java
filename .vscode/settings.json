@@ -1,6 +1,9 @@
 {
-    "java.project.sourcePaths": [
-        "Cycle 2",
-        "Cycle6"
-    ]
+  "java.project.sourcePaths": [
+    "Cycle6",
+    "Cycle 3",
+    "Cycle 2",
+    "Cycle 4",
+    "Cycle7"
+  ]
 }
